@@ -75,12 +75,17 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 
 DATABASES = {
     'default': {
+<<<<<<< HEAD
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ecom_webpage', 
         'USER': 'postgres',
         'PASSWORD': 'ghost786143',
         'HOST': '127.0.0.1', 
         'PORT': '5432',
+=======
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+>>>>>>> 72cd598ffbd6cc69c5d26b9b856f473fbedf57d9
     }
 }
 
