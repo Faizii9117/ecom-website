@@ -5,8 +5,8 @@ from ecomapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",views.index,name='index'),
-    path("login",views.login,name='login'),
-    path("home",views.home,name='home'),
+    path("login/", views.auth_login_view, name='login'),
+    path("logout/", views.logout_view, name='logout')
    
 
 ]
