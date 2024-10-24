@@ -1,6 +1,4 @@
 
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -79,6 +77,7 @@
                 <input type="password" class="form-control"id="password" name="password" required>
             </div>
             <button type="submit">Login</button>
+            <a href="{%url 'register'%}"class="btn btn-dark">Create account</a>
         </form>
         <div id="message">
             {% if messages %}
@@ -88,6 +87,8 @@
             {% endif %}
         </div>
     </div>
+
+    
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             // Uncomment the following line if you want to prevent the default form submission for testing
