@@ -55,3 +55,23 @@ def logout_view(request):
 
 def contact(request):
     return render (request, "contact.html")
+
+
+def details_oneplus(request):
+    return render (request, "oneplus.html")
+
+def details_samsung(request):
+    return render (request, "samsung.html")
+
+def details_realme(request):
+    return render (request, "realme.html")
+
+def details_apple(request):
+    return render (request, "apple.html")
+
+def details_vivo(request):
+    return render (request, "vivo.html")
+
+def details_oppo(request):
+    return render (request, "oppo.html")
+

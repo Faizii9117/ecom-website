@@ -9,6 +9,14 @@ urlpatterns = [
     path("logout/", views.logout_view, name='logout'),
     path("contact/", views.contact, name='contact'),
     path("register/",views.register,name="register"),
+    path("details-samsung/",views.details_samsung,name="details"),
+    path("details-oneplus/",views.details_oneplus,name="details"),
+    path("details-realme/",views.details_realme,name="details"),
+    path("details-apple/",views.details_apple,name="details"),
+    path("details-vivo/",views.details_vivo,name="details"),
+    path("details-oppo/",views.details_oppo,name="details"),
+
+
 
    
 
