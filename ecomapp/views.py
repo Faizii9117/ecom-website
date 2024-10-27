@@ -20,9 +20,9 @@ def register(request):
             return redirect('/')  # Redirect to the home page
             
     else:
-        form = UserCreationForm()
-
-    return render(request, 'register.html', {'form': form})
+        form = UserCreationForm()  # Create a blank form
+    
+    return render(request, 'register.html', {'form': form})   
 
 def auth_login_view(request):
     if request.method == "POST":
@@ -37,7 +37,7 @@ def auth_login_view(request):
             return redirect("/")
         else:
             messages.error(request, "Invalid username or password.")
-            return render(request, "login.html", {"username": username})
+            return render(request, "login.html", {"username": username})  # Repopulate username field
 
     return render(request, "login.html")
 
