@@ -3,16 +3,12 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout as auth_logout, authenticate, login as auth_login
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+@login_required
 def index(request):
-    if request.user.is_anonymous:
-        return redirect("/login")
-    
-
     return render(request, "index.html")
-
 
 def register(request):
     if request.method == "POST":
@@ -20,15 +16,13 @@ def register(request):
         if form.is_valid():
             user = form.save()  # Call the save method
             auth_login(request, user)  # Log the user in
-            return redirect('/login')  # Redirect to a success page or home
+            messages.success(request, "Registration successful! You are now logged in.")
+            return redirect('/')  # Redirect to the home page
             
     else:
-        initial_data = {'username':'','password1':'','password2':''}
-        form = UserCreationForm(initial=initial_data)
-    
-    return render(request, 'register.html', {'form': form})   
+        form = UserCreationForm()
 
-
+    return render(request, 'register.html', {'form': form})
 
 def auth_login_view(request):
     if request.method == "POST":
@@ -39,39 +33,36 @@ def auth_login_view(request):
 
         if user is not None:
             auth_login(request, user)
+            messages.success(request, "You are now logged in.")
             return redirect("/")
         else:
             messages.error(request, "Invalid username or password.")
-            return render(request, "login.html")
+            return render(request, "login.html", {"username": username})
 
     return render(request, "login.html")
-
 
 def logout_view(request):
     auth_logout(request)
     messages.success(request, "You have been logged out.")
     return redirect("/login")
 
-
 def contact(request):
-    return render (request, "contact.html")
-
+    return render(request, "contact.html")
 
 def details_oneplus(request):
-    return render (request, "oneplus.html")
+    return render(request, "oneplus.html")
 
 def details_samsung(request):
-    return render (request, "samsung.html")
+    return render(request, "samsung.html")
 
 def details_realme(request):
-    return render (request, "realme.html")
+    return render(request, "realme.html")
 
 def details_apple(request):
-    return render (request, "apple.html")
+    return render(request, "apple.html")
 
 def details_vivo(request):
-    return render (request, "vivo.html")
+    return render(request, "vivo.html")
 
 def details_oppo(request):
-    return render (request, "oppo.html")
-
+    return render(request, "oppo.html")
