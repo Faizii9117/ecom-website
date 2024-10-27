@@ -1,23 +1,17 @@
-from django.contrib import admin
-from django.urls import path, include
-from ecomapp import views
+from django.urls import path
+from .views import index, register, auth_login_view, logout_view, contact
+from .views import details_oneplus, details_samsung, details_realme, details_apple, details_vivo, details_oppo
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path("",views.index,name='index'),
-    path("login/", views.auth_login_view, name='login'),
-    path("logout/", views.logout_view, name='logout'),
-    path("contact/", views.contact, name='contact'),
-    path("register/",views.register,name="register"),
-    path("details-samsung/",views.details_samsung,name="details"),
-    path("details-oneplus/",views.details_oneplus,name="details"),
-    path("details-realme/",views.details_realme,name="details"),
-    path("details-apple/",views.details_apple,name="details"),
-    path("details-vivo/",views.details_vivo,name="details"),
-    path("details-oppo/",views.details_oppo,name="details"),
-
-
-
-   
-
+    path('', index, name='index'),
+    path('register/', register, name='register'),
+    path('login/', auth_login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
+    path('contact/', contact, name='contact'),
+    path('details/oneplus/', details_oneplus, name='details_oneplus'),
+    path('details/samsung/', details_samsung, name='details_samsung'),
+    path('details/realme/', details_realme, name='details_realme'),
+    path('details/apple/', details_apple, name='details_apple'),
+    path('details/vivo/', details_vivo, name='details_vivo'),
+    path('details/oppo/', details_oppo, name='details_oppo'),
 ]
