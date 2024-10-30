@@ -75,3 +75,11 @@ def details_vivo(request):
 def details_oppo(request):
     return render (request, "oppo.html")
 
+
+def buynow(request):
+    return render (request, "buynow.html")
+
+
+def paynow(request):
+    return render (request, "paynow.html")
+
