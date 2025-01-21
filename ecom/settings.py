@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
+    'rest_framework'
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -76,10 +77,10 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 DATABASES = {
 
     'default':{ 
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'ecom_webpage', 
         'USER': 'postgres',
-        'PASSWORD': 'farhankhan',
+        'PASSWORD': 'farhan',
         'HOST': '127.0.0.1', 
         'PORT': '5432',
     }

@@ -3,9 +3,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout as auth_logout, authenticate, login as auth_login
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
+#from rest_framework import viewsets
 
 
-# Create your views here.
+
+
 def index(request):
     if request.user.is_anonymous:
         return redirect("/login")
