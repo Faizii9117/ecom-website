@@ -1,108 +1,187 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color:grey;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Names & Login</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background: black;
+      overflow: hidden;
+    }
 
-        .login-container {
-            background: white;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+    /* Central Container */
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      max-width: 100%;
+      padding: 20px;
+    }
 
-        h2 {
-            margin-bottom: 20px;
-        }
+    /* Section for Animated Names */
+    .animated-names {
+      margin-bottom: 30px;
+    }
 
-        .form-group {
-            margin-bottom: 15px;
-          
-        }
+    h1 {
+      font-size: 4rem;
+      color: white;
+      text-transform: uppercase;
+      animation: glow 2s infinite;
+      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff4da6, 0 0 30px #ff4da6, 0 0 40px #ff4da6;
+      margin: 10px 0;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff4da6, 0 0 30px #ff4da6, 0 0 40px #ff4da6;
+      }
+      50% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #ff99cc, 0 0 30px #ff99cc, 0 0 40px #ff99cc, 0 0 50px #ff99cc;
+      }
+      100% {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff4da6, 0 0 30px #ff4da6, 0 0 40px #ff4da6;
+      }
+    }
 
-        input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+    /* Login Form Section */
+    .login-container {
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+      margin-top: 20px;
+    }
 
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+    h2 {
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
 
-        button:hover {
-            background-color: #0056b3;
-        }
+    .form-group {
+      margin-bottom: 15px;
+    }
 
-        #message {
-            margin-top: 15px;
-            color: green;
-        }
-    </style>
+    label {
+      display: block;
+      margin-bottom: 5px;
+      text-align: left;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .btn-dark {
+      display: block;
+      margin-top: 10px;
+      color: #333;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .btn-dark:hover {
+      color: #000;
+    }
+
+    #message {
+      margin-top: 15px;
+      color: green;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .login-container {
+        width: 80%;
+      }
+
+      .animated-names h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Login</h2>
-        <form id="loginForm" method="post" action="/login/">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username"class="form-control" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control"id="password" name="password" required>
-            </div>
-            <button type="submit">Login</button>
-            <a href="/register"class="btn btn-dark">Create account</a>
-        </form>
-        <div id="message">
-            {% if messages %}
-                {% for message in messages %}
-                    <p>{{ message }}</p>
-                {% endfor %}
-            {% endif %}
+  <!-- Central Container -->
+  <div class="container">
+    <!-- Animated Names Section -->
+    <section class="animated-names">
+      <h1>Farhan Khan</h1>
+      <h1>Shaikh Faisal</h1>
+    </section>
+
+    <!-- Login Form Section -->
+    <section class="login-container">
+      <h2>Login</h2>
+      <form id="loginForm" method="post" action="/login/">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" class="form-control" name="username" required>
         </div>
-    </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" class="form-control" name="password" required>
+        </div>
+        <button type="submit">Login</button>
+        <a href="/register" class="btn-dark">Create Account</a>
+      </form>
+      <div id="message">
+        {% if messages %}
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </section>
+  </div>
 
-    
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            // Uncomment the following line if you want to prevent the default form submission for testing
-            // event.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      // Uncomment the following line to prevent default submission for testing
+      // event.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
 
-            // Here you would typically send the data to the server for verification
-            // For demonstration, we'll just log it to the console
-            console.log('Username:', username);
-            console.log('Password:', password);
-        });
-    </script>
+      // Log the data to console for testing
+      console.log('Username:', username);
+      console.log('Password:', password);
+    });
+  </script>
 </body>
 </html>
-
