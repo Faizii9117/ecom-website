@@ -3,81 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Detail Page</title>
+    <title>Image and Text Alignment</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
+        .custom-image-size {
+            max-width: 300px;
+            height: 300px;
         }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        .product-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .product-title {
-            font-size: 2em;
-            color: #333;
-        }
-        .product-price {
-            font-size: 1.5em;
-            color: #e74c3c;
-        }
-        .product-image {
-            max-width: 100%;
-            height: auto;
-        }
-        .product-description {
-            margin-top: 20px;
-            line-height: 1.6;
-        }
-        .buy-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #3498db;
+        header {
+          background-color: #007bff;
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-            margin-top: 20px;
+            padding: 20px;
+            text-align: center;
+      }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
         }
-        .buy-button:hover {
-            background: #2980b9;
+
+        .image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .text-container {
+            flex: 2;
+            padding-left: 20px;
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <div class="product-header">
-        <h1 class="product-title">iphone 16 pro</h1>
-        <p class="product-price">1,20,000</p>
+  <header>
+    <h1>My E-Commerce Store</h1>
+    <nav>
+        <a href="#" style="color: white; margin: 0 15px;">Home</a>
+        <a href="#" style="color: white; margin: 0 15px;">Products</a>
+        <a href="/contact" style="color: white; margin: 0 15px;">Contact</a>
+    </nav>
+</header>
+   
+    <div class="container">
+        <div class="image-container">
+            <img src="https://m.media-amazon.com/images/I/61Ony8rgwEL._AC_UF1000,1000_QL80_.jpg" class="custom-image-size" alt="Sample Image">
+        </div>
+        <div class="text-container">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
     </div>
-    <img src="data:image/jpeg;base64,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" alt="Product Image" class="product-image">
-    <div class="product-description">
-        <h2>Description</h2>
-        <p>
-            Brand	Apple<br>
-            Operating System	iOS<br>
-            Memory Storage Capacity	128 GB<br>
-            Screen Size	6.7 Inches<br>
-            Model Name	iPhone 15 Plus (Renewed)<br>
-            Wireless Carrier	AT&T<br>
-            Cellular Technology	5G<br>
-            Connectivity Technology	Wireless<br>
-            Color	Black<br>
-            Connector Type	USB Type C</p>
-    </div>
-    <a href="/buynow" class="buy-button">Buy Now</a>
-</div>
-
+    <form action="/details-apple" method="GET">
+      <button type="submit" class="btn btn-primary">Buy now</button>
+  </form>
+  
 </body>
 </html>
