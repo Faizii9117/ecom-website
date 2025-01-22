@@ -3,24 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image and Text Alignment</title>
+    <title>Futuristic E-Commerce Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
     <style>
-        .custom-image-size {
-            max-width: 300px;
-            height: 300px;
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e1e;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
+
         header {
-          background-color: #007bff;
-            color: white;
-            padding: 20px;
+            background-color: #111;
+            color: #fff;
+            width: 100%;
+            padding: 20px 0;
             text-align: center;
-      }
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 40px;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: #66ff66;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
         .container {
             display: flex;
+            justify-content: center;
             align-items: center;
-            justify-content: space-between;
-            max-width: 100%;
-            margin: 0 auto;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            width: 100%;
             padding: 20px;
         }
 
@@ -29,39 +71,177 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-bottom: 20px;
         }
 
         .text-container {
             flex: 2;
-            padding-left: 20px;
+            background-color: #2d2d2d;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .text-container:hover {
+            transform: translateY(-10px);
+            background-color: #333;
+        }
+
+        .custom-image-size {
+            width: 350px;
+            height: 350px;
+            border-radius: 15px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .custom-image-size:hover {
+            transform: scale(1.05);
+        }
+
+        .card-title {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #66ff66;
+        }
+
+        .card-text {
+            font-size: 18px;
+            color: #bbb;
+            line-height: 1.6;
+        }
+
+        .card-text small {
+            color: #999;
+        }
+
+        .btn {
+            background-color: #66ff66;
+            color: #111;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn:hover {
+            background-color: #4caf50;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .success-message {
+            color: #66ff66;
+            margin-top: 30px;
+            font-size: 18px;
+            display: none;
+            text-align: center;
+        }
+
+        .background-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 255, 0, 0.2) 25%, transparent 25%) -50px 0,
+                        linear-gradient(-45deg, rgba(0, 255, 0, 0.2) 25%, transparent 25%) -50px 0;
+            background-size: 100px 100px;
+            z-index: -1;
+            animation: moveLines 5s linear infinite;
+        }
+
+        @keyframes moveLines {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: 100px 100px;
+            }
         }
     </style>
 </head>
 <body>
-  <header>
-    <h1>My E-Commerce Store</h1>
-    <nav>
-        <a href="#" style="color: white; margin: 0 15px;">Home</a>
-        <a href="#" style="color: white; margin: 0 15px;">Products</a>
-        <a href="/contact" style="color: white; margin: 0 15px;">Contact</a>
-    </nav>
-</header>
-   
+
+    <header>
+        <h1> E-Commerce Store</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
     <div class="container">
         <div class="image-container">
-            <img src="https://m.media-amazon.com/images/I/61Ony8rgwEL._AC_UF1000,1000_QL80_.jpg" class="custom-image-size" alt="Sample Image">
+            <img id="productImage" src="https://m.media-amazon.com/images/I/61Ony8rgwEL._AC_UF1000,1000_QL80_.jpg" class="custom-image-size" alt="Sample Product Image">
         </div>
         <div class="text-container">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+            <div>
+                <h5 class="card-title" id="productTitle">Apple 16 Pro Max</h5>
+                <p class="card-text" id="productDescription">The Apple 16 Pro Max is equipped with cutting-edge performance, stunning display, and a camera system built for the next level. Feel the speed and efficiency.</p>
+                <p class="card-text"><small class="text-body-secondary" id="productLastUpdated">Last updated 3 mins ago</small></p>
+            </div>
+            <div>
+                <button class="btn" onclick="changeImage()">Change Image</button>
+                <button class="btn" onclick="updateText()">Update Product Info</button>
             </div>
         </div>
     </div>
-    <form action="/details-apple" method="GET">
-      <button type="submit" class="btn btn-primary">Buy now</button>
-  </form>
-  
+
+    <form id="buyForm" onsubmit="handleFormSubmit(event)">
+        <div style="text-align: center;">
+            <button type="submit" class="btn">Buy Now</button>
+        </div>
+    </form>
+
+    <div id="successMessage" class="success-message">
+        Thank you for your purchase! We will process your order shortly.
+    </div>
+
+    <div class="background-lines"></div>
+
+    <script>
+        // Function to change the image dynamically
+        function changeImage() {
+            const images = [
+                "https://www.apple.com/v/iphone-16-pro/o/images/overview/iphone-16-pro-new-product-hero.jpg",
+                "https://www.cnet.com/a/img/resize/d9676ec4d5ab34cec0c65ac75a35b57f93d412f8/hub/2024/09/09/190392b5-9513-42b2-a5e0-169624a4a3ce/screenshot-2024-09-09-at-11-35-38am.png?auto=webp&width=1200",
+                "https://www.fonezone.ae/cdn/shop/articles/Unveiling_the_Future_iPhone_16_Pro_-_A_Technological_Marvel.webp?v=1707687611"
+            ];
+            const imageElement = document.getElementById('productImage');
+            const currentSrc = imageElement.src;
+            const nextImage = images[(images.indexOf(currentSrc) + 1) % images.length];
+            imageElement.src = nextImage;
+        }
+
+        // Function to update product text dynamically
+        function updateText() {
+            const productTitle = document.getElementById('productTitle');
+            const productDescription = document.getElementById('productDescription');
+            const productLastUpdated = document.getElementById('productLastUpdated');
+
+            productTitle.textContent = "Apple 16 Pro Max - Exclusive Edition";
+            productDescription.textContent = "The Exclusive Edition of Apple 16 Pro Max comes with an advanced design and performance upgrade. Limited units available!";
+            productLastUpdated.textContent = "Last updated 10 mins ago";
+        }
+
+        // Handle form submission dynamically
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent actual form submission
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block'; // Display success message
+        }
+    </script>
+
 </body>
 </html>
