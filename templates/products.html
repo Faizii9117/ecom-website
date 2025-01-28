@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Phones</title>
+  <style>
+    /* CSS */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3f4f6;
+    }
+
+    header {
+      background-color: #1e3a8a;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+    }
+
+    .card-content {
+      padding: 1rem;
+    }
+
+    .card-content h3 {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    .card-content p {
+      color: #555;
+      margin: 0.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    .card-content button {
+      background-color: #1e3a8a;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .card-content button:hover {
+      background-color: #374fbf;
+    }
+  </style>
+</head>
+<body>
+  <!-- HTML -->
+  <header>
+    <h1>Our Top Mobile Phones</h1>
+  </header>
+  <div class="container" id="product-list">
+    <!-- Products will be added dynamically -->
+  </div>
+
+  <script>
+    // JavaScript
+    const products = [
+      {
+        name: "iPhone 15",
+        price: "$1099",
+        image: "https://via.placeholder.com/200?text=iPhone+15",
+      },
+      {
+        name: "Samsung Galaxy Z Fold 5",
+        price: "$1899",
+        image: "https://via.placeholder.com/200?text=Galaxy+Z+Fold+5",
+      },
+      {
+        name: "Xiaomi 13 Ultra",
+        price: "$999",
+        image: "https://via.placeholder.com/200?text=Xiaomi+13+Ultra",
+      },
+      {
+        name: "Sony Xperia 1 V",
+        price: "$1199",
+        image: "https://via.placeholder.com/200?text=Sony+Xperia+1+V",
+      },
+      {
+        name: "OnePlus 11 Pro",
+        price: "$799",
+        image: "https://via.placeholder.com/200?text=OnePlus+11+Pro",
+      },
+      {
+        name: "Google Pixel Fold",
+        price: "$1799",
+        image: "https://via.placeholder.com/200?text=Pixel+Fold",
+      }
+    ];
+
+    const productList = document.getElementById('product-list');
+
+    products.forEach(product => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <div class="card-content">
+          <h3>${product.name}</h3>
+          <p>Price: ${product.price}</p>
+          <button>Add to Cart</button>
+        </div>
+      `;
+      productList.appendChild(card);
+    });
+  </script>
+</body>
+</html>

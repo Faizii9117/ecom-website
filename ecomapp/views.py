@@ -85,3 +85,6 @@ def buynow(request):
 def paynow(request):
     return render (request, "paynow.html")
 
+
+def products(request):
+    return render (request, "products.html")
