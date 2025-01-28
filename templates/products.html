@@ -11,6 +11,9 @@
       margin: 0;
       padding: 0;
       background-color: #f3f4f6;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     header {
@@ -18,6 +21,7 @@
       color: white;
       text-align: center;
       padding: 1rem 0;
+      flex-shrink: 0;
     }
 
     header h1 {
@@ -25,18 +29,22 @@
       font-size: 1.8rem;
     }
 
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    .scroll-container {
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
       gap: 1.5rem;
       padding: 1rem;
+      flex-grow: 1;
     }
 
     .card {
       background-color: white;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
       transition: transform 0.3s, box-shadow 0.3s;
     }
 
@@ -48,6 +56,7 @@
     .card img {
       width: 100%;
       height: auto;
+      border-radius: 12px 12px 0 0;
     }
 
     .card-content {
@@ -85,7 +94,7 @@
   <header>
     <h1>Our Top Mobile Phones</h1>
   </header>
-  <div class="container" id="product-list">
+  <div class="scroll-container" id="product-list">
     <!-- Products will be added dynamically -->
   </div>
 
@@ -93,34 +102,34 @@
     // JavaScript
     const products = [
       {
-        name: "iPhone 15",
-        price: "$1099",
-        image: "https://via.placeholder.com/200?text=iPhone+15",
+        name: "Apple 16 Pro Max",
+        price: "Rs-1,20,000",
+        image: "https://www.imagineonline.store/cdn/shop/files/iPhone_16_Pro_Max_White_Titanium_PDP_Image_Position_1__en-IN_eba16b29-a280-4119-91a7-0a2432e06cdf_grande.jpg?v=1727250990",
       },
       {
-        name: "Samsung Galaxy Z Fold 5",
-        price: "$1899",
-        image: "https://via.placeholder.com/200?text=Galaxy+Z+Fold+5",
+        name: "OnePlus Nord CE4 Lite 5G",
+        price: "Rs-20,999",
+        image: "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202406/oneplus-nord-ce4-lite-242805361-1x1.jpg?VersionId=DMoNsjkJwSPN2ePoh4I18l6AgdSXGfIR",
       },
       {
-        name: "Xiaomi 13 Ultra",
-        price: "$999",
-        image: "https://via.placeholder.com/200?text=Xiaomi+13+Ultra",
+        name: "Realme NARZO N65 5G",
+        price: "Rs:9,999",
+        image: "https://www.zebrs.com/uploads/zebrs/products/2-949292493962063_l.jpg",
       },
       {
-        name: "Sony Xperia 1 V",
-        price: "$1199",
-        image: "https://via.placeholder.com/200?text=Sony+Xperia+1+V",
+        name: "Vivo V27",
+        price: "Rs-35,999",
+        image: "https://gsmarena.com.in/front/images/product_images/large/74766.jpg",
       },
       {
-        name: "OnePlus 11 Pro",
-        price: "$799",
-        image: "https://via.placeholder.com/200?text=OnePlus+11+Pro",
+        name: "Oppo A3x 5g",
+        price: "Rs-15,999",
+        image: "https://m.media-amazon.com/images/I/81Tx+kozw2L.jpg",
       },
       {
-        name: "Google Pixel Fold",
-        price: "$1799",
-        image: "https://via.placeholder.com/200?text=Pixel+Fold",
+        name: "Samsung S24 ultra",
+        price: "Rs-79,000",
+        image: "https://m.media-amazon.com/images/I/81vxWpPpgNL._AC_UF1000,1000_QL80_.jpg",
       }
     ];
 
