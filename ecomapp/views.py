@@ -88,3 +88,6 @@ def paynow(request):
 
 def products(request):
     return render (request, "products.html")
+
+def index(request):
+    return render (request, "index.html")

@@ -22,6 +22,7 @@ urlpatterns = [
     path("details-vivo/",views.details_vivo,name="details"),
     path("details-oppo/",views.details_oppo,name="details"),
     path("products/", views.products, name="products"),
+    path("index/", views.index, name="index"),
    
 
 
