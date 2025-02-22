@@ -3,9 +3,12 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout as auth_logout, authenticate, login as auth_login
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
+from ecomapp.models import Contact
+#from rest_framework import viewsets
 
 
-# Create your views here.
+
+
 def index(request):
     if request.user.is_anonymous:
         return redirect("/login")
@@ -52,10 +55,39 @@ def logout_view(request):
     messages.success(request, "You have been logged out.")
     return redirect("/login")
 
+<<<<<<< HEAD
  
 def contact(request):
     return render (request, "contact.html")
+=======
 
+>>>>>>> 902c10aaff024e88502a5f17b8c296819259bdd9
+
+def contact_view(request):
+   
+
+    context = {}
+
+    if request.method == "POST":
+        data = request.POST
+        name = data.get('name')
+        email = data.get('email')
+        message = data.get('message')
+
+        # Save the contact data
+        Contact.objects.create(
+            name=name,
+            email=email,
+            message=message
+        )
+
+        return redirect('contact') 
+
+    # Fetch all contact data to display
+    data = Contact.objects.all()
+    context["contact"] = data
+
+    return render(request, "Contact.html", context)
 
 def details_oneplus(request):
     return render (request, "oneplus.html")
@@ -83,3 +115,9 @@ def buynow(request):
 def paynow(request):
     return render (request, "paynow.html")
 
+
+def products(request):
+    return render (request, "products.html")
+
+def index(request):
+    return render (request, "index.html")

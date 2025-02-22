@@ -3,76 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Detail Page</title>
+    <title>Futuristic E-Commerce Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
     <style>
+        /* Global Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f8f8;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
+            background-color: #1e1e1e;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        .product-header {
+
+        header {
+            background-color: #111;
+            color: #fff;
+            width: 100%;
+            padding: 20px 0;
             text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 40px;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: #66ff66;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-bottom: 20px;
         }
-        .product-title {
-            font-size: 2em;
-            color: #333;
+
+        .text-container {
+            flex: 2;
+            background-color: #2d2d2d;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
-        .product-price {
-            font-size: 1.5em;
-            color: #e74c3c;
+
+        .text-container:hover {
+            transform: translateY(-10px);
+            background-color: #333;
         }
-        .product-image {
-            max-width: 100%;
-            height: auto;
+
+        .custom-image-size {
+            width: 350px;
+            height: 350px;
+            border-radius: 15px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
-        .product-description {
-            margin-top: 20px;
+
+        .custom-image-size:hover {
+            transform: scale(1.05);
+        }
+
+        .card-title {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #66ff66;
+        }
+
+        .card-text {
+            font-size: 18px;
+            color: #bbb;
             line-height: 1.6;
         }
-        .buy-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-            margin-top: 20px;
+
+        .card-text small {
+            color: #999;
         }
-        .buy-button:hover {
-            background: #2980b9;
+
+        .btn {
+            background-color: #66ff66;
+            color: #111;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn:hover {
+            background-color: #4caf50;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .success-message {
+            color: #66ff66;
+            margin-top: 30px;
+            font-size: 18px;
+            display: none;
+            text-align: center;
+        }
+
+        .background-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 255, 0, 0.2) 25%, transparent 25%) -50px 0,
+                        linear-gradient(-45deg, rgba(0, 255, 0, 0.2) 25%, transparent 25%) -50px 0;
+            background-size: 100px 100px;
+            z-index: -1;
+            animation: moveLines 5s linear infinite;
+        }
+
+        @keyframes moveLines {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: 100px 100px;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="product-header">
-        <h1 class="product-title">vivo</h1>
-        <p class="product-price">35,999</p>
+    <header>
+        <h1>E-Commerce Store</h1>
+        <nav>
+            <a href="/index">Home</a>
+            <a href="/products">Products</a>
+            <a href="/contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="image-container">
+            <img id="productImage" src="https://www.jiomart.com/images/product/original/493665876/vivo-v27-5g-128-gb-8-gb-ram-noble-black-mobile-phone-digital-o493665876-p599409630-0-202303160622.jpeg?im=Resize=(1000,1000)" class="custom-image-size" alt="Sample Product Image">
+        </div>
+        <div class="text-container">
+            <div>
+                <h5 class="card-title" id="productTitle">vivo v27 5G</h5>
+                <p class="card-text" id="productDescription">The vivo v27 5G is equipped with cutting-edge performance, stunning display, and a camera system built for the next level. Feel the speed and efficiency.</p>
+                <p class="card-text"><small class="text-body-secondary" id="productLastUpdated">Last updated 3 mins ago</small></p>
+            </div>
+            <div>
+                <button class="btn" onclick="changeImage()">Change Image</button>
+                <button class="btn" onclick="updateText()">Update Product Info</button>
+            </div>
+        </div>
     </div>
-    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxASEhUQDw8VFRUQDxUVFRUQFRUVFRUVFRUWFhUVFRUYHSggGBolHRUVIjEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGhAQGC4dHh0rLS0tLS0uLS0tKy0tKystMS0tLSstLS0tLSs3LS0tLS0tLS0tKy0vLS0rLSstKy0rLf/AABEIAP0AxwMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAACAAEDBAUGBwj/xABPEAABAwICBAUMDwYGAwEAAAABAAIDBBEFIRIxQVEGNGFxsRMiMnJzgZGSsrPB0QcUFhcjJDVCUlNUk6Gi0zNVwsPS8BVDRGKC8YOj4SX/xAAaAQADAQEBAQAAAAAAAAAAAAABAgMABAUG/8QALREAAgIBBAECAwgDAAAAAAAAAAECEQMSITFBBBMyUWGhIkJxgZGx0fAFIzP/2gAMAwEAAhEDEQA/APVMRndNIYY5HMbHm8sNiSPmg7lVdh8Y2E85ufCpcPHw8/N0yPKtRR6RdpDIGwz1naebZ3ir8EeTONAzcm9os3IMdx7DqMgVMjGuIvogFz7b9EXIVbB+FeFVTupwTsLzqY8Ojee1a8Au711tZtJc9pM3JvaTNy0XU8f0Ao3U7PohHUDSUDRs3JvajNyte12u7GO/MMvDqUMlO0GxZY8tx4N6OpA0kJpW7kBpm7lI95DgNjgRfcR6xfwJ3FMAwuE+JMpYXSBuk8g6A2CwuXOy1D8SQNq5fC6HhBO0SO9rQtdm1tQHuktsu3rtHmJFty66rpmyVUQeLhsd8+SRr+mNvgW4glbZm6Rwf+BY39pofun+pL/Asb+00P3T/Uu8SR0IGtnAvwDHD/q6Ic0TvS1D7nsd+2Uf3R/oXoCSOhG1s8/9z2O/bKP7o/0Je5/HPttH90f6F6AuCxjgZVy4oyubOwRslik0i5wlY1jWh8LQBYsdonaP2jr32hxoKkD7n8d+2Uf3R/oS9z+O/bKP7o/0Lv0kdCBrZwLMBxwf6uiPPE70NR/4Hjn2mh+6f6l3awMSxJ0pMVObN1PkG3eGetNHDqdIDyUcjNHjAf1NtRRPI7Itidog7r2zKeop8fY3TifSvIF9GMPjeeRpy6Quto6NrAAArzGqz8eC+IPUY3sZcLZKqPqNUC2ZgPZXudE2cDfPSaciDc6s80kGEU7W4jG5osXteTy3isfNM8CdedNVKjqi7RuUH7efmHluU1ZWNhgkmdqiY955m3PoUFB+3n5h5blJidH1amkhP+bG9vhuE8hEfNGJ4nNVzOllfeSV1ydgvkGtvqaMgAsSvLmOycQWu1g5tcDrBHKNYR4rBLTSvhmaQ+Nxab5X5RyFUnyPkIaAScgAMydwyUih9GexLwllraO850pIX6DnfSFsnHlXX1DtQ3mx5rEnoXHexVwedRUlnnr5SHO3A21DeBe19tiuul2ch9BHpVN6E7CfIdWoDYNQUb5LjRcbgm3K07CO/wBKTrjX3iMwULR84iwGeeVzssi6oG9lV+y+8dKdyGR3SOkJyqxJsz/9WzuR6StdZA42zuR6StdaPLBLoSSSScQSSSSxhJJJLGEgmlaxpc9wDWi5JyACqzYkwZM68/7dQ53avBdZ9RA+Ygy6gcmDsQd53nlKZRbBZRrsXfUHQhaRFtJyL/U3kVuipyABa3Mr0NEBqCtx06usiiqQKsrxwqXqasiFGIlKWYZRM+gHx+HtHebkSR04tiEPaO83KkvPm7k2dcODSoP28/MPLcr0Zy756SqNB+3n5h5blNV1TYonyv7GNj3u5m3J6FRk0cvw7wzB5AHYk6NjrZOLtF9u9mQsjgjwewHT0qKWOZ7c7aYc4cujrty2XkONYvPXVDppc3yuyaMw0HJsbByZDlWLJK+J4exxa9jsnNJa5rhuI1akmopR9aHLVsUTiuU9jbhM+upA+X9pGdFxGV/91tm1dQ4qiJsbqhGo25lDLITrN07ioXlMkKCTn3x0hGVDfP8AveFKU6Ayk3jbO5HpctdY7ONs7kekrZQjywS6GSToJJA3Xt1DaeZOIEo5J2tyJz3DM+AJmxPf2WmxvI0/idfgV6LD2NGQHPvSuSQaZmmocexZbld6h61C+mc/s3EjdqHgGvvrc9rjcl1EblvUSBpZkx0YGxWWU6vdSRCNLLMFQKrYVIIlY0EQaoyyNlVEgEacRqRzgFC+VKrZnSMxo/8A0YbfVnzcqSGD5Rh7R3m5UkGVjwaFBxifmHlvQ4zR9WppYfrI3t8N09BxifmHluVsHLvnpKsyaPkitZLTyuikBa+N1jszB1g95VJpi8gBuZsMhmTqGQX0fw24LYZUfCVjmxO+npNaTzg61kcGuAuFNd1WCVs5bta5jrc+ip6XwPqJ/YswJ9JSfCdnJZzhuOvR5bXtzgrsXFMAALAWA1AIXFVSom2A8qB5UjyoXlMAEHPvjpCnKrNOf971YKZCsps42zuR6StlYsfG2dyPSVtoR5ZpdDG+oC5OQHKr9DShnXHrnnW47ORu4KKhZrd3h6Vea26nkn0GK7BkN0UcWVkbWBOSouQ6iR9TKXU1JdCXJdTGpAaCY2CIlRuQMM+RQOlKJ6gJVEhGxymsm0k90wpnQ/KMPc3eblSSi+UYe5nzcqSRl48F3DDeaZ17gg2I3CR4U9VUNjjdI82axrnOO4C5J/BVcE1u7n/NkQ47TGWnlhH+ZE9vhuFZk4nzlwl4RyVk7qifIOdkwamMHYtG8gaztN1jNxB8MolppHMe03DmGxHIT84bDsO5QVsT43mKQEOY7RcOUblWI1cqjZWj6P4BcJDXUoleAJGnReBqvvHJrXQuK4r2LMGkpaX4XJ0lnEfRvc6J5RfPluNi7FxV48EXyC8qFxRvKicUwBmnMf3tVkqow5jnVkpkKyrDxtncj0lbaxIONs7kekrbcguWaXRp0jLNA7/hVt2QyUDFISuRsshiU10JKSUw90ySQSsZDIHBSFA5ZM1FeVVZCrUqpTFWgQmNpImvVYuRB6rRLUQRyAYhCXEAdTOZyHYSpKpUG9XF2n8MidKoWdOuka+Cdk7uf82RTvd0npVfBOyd3P8AmyJ6lpa5ztbXZ2AuQdR7xy/HenfIq4ON4W8CKKsd1R145NrmA523iyysG9jajp5A9z3Pc03GR2HfsXcvqGbneJJ6lE6dm53iyepbSg6iZjWtADRYAZBA4qI1TdzvEf6kBqW7neI/1JqFJHFRPKB1Q3c7xH+pRunG53iO9SyMSMd1w51bKpwQuLg45ADIHXff4OlWynQpWp+Ns7kekrbkdYX5R0hYlNxtncj0laeKP0YnO3WP5glSttAn0dAwp3FVKCoDmg7wrEhXLJUyydiumuhuldKFBgpwUF090rQ6DugcldIlKYglVGoV+RUqgKuNkMhQc5IOTSIAV1nKVnn43F2p8mRJC7jUXanyXpJInT0vwN3CWaL3t+iwjwSyBWZlWwqTSkkda2k0m3PNIrMxR7CQlRkI3ICUUAByAonIHJjAFAURQFEAJUbkTigJRAQUvGmdzPSVo48bU0x+jE4+KL+hZ1Jxpncz0lauLxacEzPpQSDwsISw935mnwjB4J43paMROekG+A2XbzOzXh/BGrcaqJwvovLHk7L6iL79IfivaZXI+Xi0TDB7EgcnuoQ5GCuNoqiQIkAKe6RjhJiUyYlCgWM5VZgrDioZEYk5GZM1RWVqdqr2XUnscjRWgg06yJl7Xac7X1MkOpOlBNoVkTrXs05XtrZINaST7XR2R06VZq4Keud3P+bIrcyq4W0NlkYD2DSP/bIrMyp2L0QkoCiJUZTABKjJROKAlEAJKjKNyjciYFyjciJQORARUfGmdzPpXQlt8t656i40zuZ9K6FTXLNLo8WwOkkp5Y2ysc2z+t0gRpN0rBw3g717TM/IHeFk8NMOZLTNe0fCU46o072A2e3wZ95WKOp04WP3tC6vIn60VOvimKti6xymBVON6ssK4JIrFlhpToGlGosqhXTEp0BQFYxKjejKjcmSJyK0oVZwVuRV3hWiQZmu41F2p8h6ZTwQB9bEwki7DmNeTJCkspJcnSotpGrQ8Zn5ul7yp5lXouM1HMPLcp5inAQlRuKJxUbimACVG4oigJRACSo3FGVG5EAJQFESoyiYCh40zuZ9K6Jc7QcaZ3M+ldHZTXLNLo4X2RMSdTVVBUC5axs7ZG/TjLo+qNttu0+EBaeBy6DXwaVxE/rT9JjuuY7vtIPfWf7KkF4qZ9tVS5n3kZd/KWXwfqj1Ntz10PwD+VmboHeLpM/8S78eNPEn/fkSb3o7mGVXonrn6WdatPKuTLjoeEjTYVKCqsblOwrjkjoTJCgKNC5IZkZUblIUDk6JMheoXhTuUTgqRJMp0HH4e0d5uRJPQ/KEPaO83Ikpy5OzH7UXaPjNRzDy3KacqCj4zUcw8tylnKuiRC4oCU7io3FOAYlRuKIlA4ogAcUBKJxQFEALkBKIlAVjDYfxpncz6V0i5rD+NM7mfSulU1yzT6Oa9kSHSonOtnFNC/8AOGH8JCuMoJGtlAvlK0RPvqBdZ0T+8/RBOwOcvR+EdKZaSojGt1PJo9sGlzfxAXLYXBHUULYnAfCFxDtocQAM91rA8nMvQ8af+tx+f6bc/QhN00yWjkO3vgrYppVz9LI5wDn5PuWyA6xKw2ffnyf/AMwtSB6GWN7gumb0EiuMcseCVX4pF5+SB0wkX2lIqJjlJdQaKguUZUhQFFE5ETlE5TOUTgqIkynRfKEPaO83IklR/KEPaO83InUpcnXj9qLNJxqo5h5TlLOVDScaqOYeU5STldCJELioyUTio3FMKCSgcU5KAlEAJQOTkoCUTDFCSnJQlYwsO40zuZ9K6Rc1h3GmdzPpXSqXbNLodpzzXC8HqbQikpz/AJFTNF3mkNae+AF3K5l8OhWTt2TsjmHOB1J4Hfa0/wDJdfiyptEMq+yUQNJzZdlUNF3JUxg28doI5SGqWMqDCQHmSmcbaZu0jWyRpu1w5QQD3lcmaSBIW2dctkaNTZB2QHIciORwXXkjpk4/oTsngkWjDKsaNyuwyLjnArCRsxSKdrlmQyK3HIuWUDojItFCUIemJU6CxigciJQlOkTaKVJ8oQ9o7zcqSVJ8oQ9o7zciSjLk6Ye1E9Lxqo5h5Tkc5UdKfjVRzDynI5yuhEiBxUZKmhYHOschYk212AJNvAhnY3RDm3sXFpDrHMAHWOdNYpXcgJTlASmAMUBTkoSsYYlAURQlYA+G8aZ3M+ldMuZw3jTO5n0rplLthlwhLHx2PRkgm3SGJ3azAW/OyMf8lsKtiVL1WJ8YNi5vWnc8Zsd3nAHvJ8ctMkyclao4vEgYKjSGouDxzHX+N1008YcBKOxlYNPcPov72YPIb/NCr41Q+2KZszBZ7W6dttiOvbzj0J+CFWHxmF2tmYvuOsL0ssvUxKa5jsyOmmUHMLHFp2KZjlcxWiI1fN1c27vavByrNY5JGpqwcM0IpFbjkWWx6sxyKM8ZaMjTY9SaSoxyKdr1zSgWTJrpFR6Se6FAZWpPlCHtHebkSTUfyhD2jvNyJ1zS5OmHBLTH41Uc38TkVQUFMfjVRzfxOT1BXQiANO6zhq2jM2BuCLX2Iap1gGBpbokk6WZJNh0AIGgE2JAG86h4EqmYEBrbkNvYu1m/QORN2AgJUZKJxQFMAZCU5KErGGQlOUKwA8M40zuZ9K6VczhfGmdzPpXTKPbDLhCSSSREMLGsWdRs0mxh7fbAJFyLMlD3Osd+mHcnXBZImYyRlVTG8Up1ai0/OY4bCFucKaHqtPI0Drgw271nD8Wt8BXnWD1ckTdJ4LoZbB4F8jscNmmNfNkda9rwsccmFtcrZr4r+fgLJWj09ta2UaJ2jIrFrqcsdyFZ8MpAsHXLeuY4anNOdwtunmE0f+5o/sqLx+k7XBz3ezKDXKVj1C9likHKjjY0WXmSKwyRZzXqZj1zzxloyNBr0YcqbJFK16g4FLHoePw9o7zcidBhx+Pw9o7zcidcE/czqhwTU/Gqjm/iclUHNNT8aqOb+JyVQc10IgRxyWOsgX1gA2yIGR50qpz8tIhw2EWsd/8A0owRfrr25NaGaW+VgANQGz1lHsBEShJTkoSUwBiUJKRKYlYA10JKdMsYPDONM7mfSunXMYXxpncz6V06i/cwy4QkkkkRBiFwtS99KZaZoBZ1fTAfctdHK0kDRBAObCLm9tFd2uf4WYfptErRmwaLuVriCPA4DvOcuvxMiU9MuH+4Hwc7S6NrR5Nv1rSbmJzj2F9sbjqOw5HWrFHWGJ+kNV8x0hY9PUWNxzEHUQdYI3Fadw8XGvlzJtsP+4b/AJwz13XrTjW0t0yE1e50dVCHtEjNTh/YWa5tk2B4gGHqcnYP/Kd61K6jtmP+1x7wel/kKt1ZmAqRrkLmWTBVaHTLDXqVsiqAow5ScCqZfwk/Hoe1d5uRMhwQ/HYe1d5uRJeLmVTZ3Q9qLUHG6jmHluTVOtKA/G6jm/ichqTmrogyu4qMonFASmFGJQlIlMUQDJiUxTErGEmKSRWMHhfGmdofSunXMYWfjTO0PpXUKP3mGXCEkkkiIJDIwOBa4XDgQQdoORCdJYx5jjlGYJ3MOonSad4O1DR1NjnmDrH/AN2HlXX8M8M6rF1Vo66HPnZ87wa/CuCY6y+gwZVmxJvlbMlJHURRMc5pcTouOZGRtty2OGsjbrC2sOqLfASODhciN41G3zTuI3H1Lj6OrtlsNrjm1EbiN6tSVBB0httpDUHW7F43OG8esKM8bezJXR09ZTWKouYr2F1onaGE9eB1pPzrbDuclNBYkEZhRjNp6WNXaKFklM9ihcFVbjJl3AeOw8zvNyJJYBx2Hmd5uRJeHn/6S/E9HH7UWtEtrJwfnC48Yn0hR1BzXQ47hHVfhWSdTezbohwcNxGXSuSklcCQSDbkt+CeEk0SlFoMlASoy8ptIqloSmGUN0NzvStyrakamK6ZLR5UtHlW1I2ljFJPocqWhyrakDSzHx3EJKa1RGL6Lcr6i5r2ODCdgc0SC++29beFeyBhk8Yf7bjiJGcdQ4RvadoN8jzi4UU1OHtcx2bXixBAII5jksMexvQO650TSXZ5GVvRJbwAKUubRRJNUzrfdhhn7xpvvo/Wn92GGfvGm++j9a5H3tMN+p/PN+ojj9jHDXG3UfzTfqJbZtETqvdhhn7xpvvo/Wl7sMM/eNN99H61zPvV4d9V+ab9RN71mHfVfmm/UWtm9NHT+6/DP3hTffR+teeY7X0LJXCGshcx3XN0JWGwPzTY7Oiy3Perw76oeNN+ol71mHfVDxpv1FfB5M8LtdgeKLOXixqmH+pi8dvrWnBjtGRZ1XD943L8Vq+9Zh31Q8ab9VP71eHfVDxpv1FeX+Qm+l9RH48X2yjTcIKSN1xWQ69krdmojPIrqYeF2Gyt+Er6drwMnGVg0hy561ie9Xh31Q8ab9RL3q8O+qHjTfqqOTypT3pGj48U+WXpeE2H/b6fvSs9apVfCzD2NLzWREDZG8PceQNbcofesw76oeNN+opIfYnw9xADGjn6s78Oqory5rpDejH5lr2M8SdWVQnDC1jRI4A62t0Wxxg7Lm7yd1xyJLv+DXB6GiiEUI5zYC/eGpOuKcrdnTFUj//Z" alt="Product Image" class="product-image">
-    <div class="product-description">
-        <h2>Description</h2>
-        <p> 4 GB RAM | 128 GB ROM | Expandable Upto 1 TB<br>
-            17.07 cm (6.72 inch) Full HD+ Display<br>
-            50MP + 2MP | 8MP Front Camera<br>
-            6000 mAh Battery<br>
-            6 Gen 1 Processor<br>
-        </p>
+
+    <form id="buyForm" onsubmit="handleFormSubmit(event)">
+        <div style="text-align: center;">
+            <button type="submit" class="btn">Buy Now</button>
+        </div>
+    </form>
+
+    <div id="successMessage" class="success-message">
+        Thank you for your purchase! We will process your order shortly.
     </div>
-    <a href="/buynow" class="buy-button">Buy Now</a>
-</div>
+
+    <div class="background-lines"></div>
+
+    <script>
+        // Function to change the image dynamically
+        function changeImage() {
+            const images = [
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbmuXZyEifxU3Q7WT57ZazUErzTzBnjHEvGA&s",
+                "https://img-prd-pim.poorvika.com/cdn-cgi/image/width=500,height=500,quality=75/product/Vivo-V27-5G-Magic-Blue-8GB-128GB-5-657.png",
+                "https://nccrc.in/wp-content/uploads/2024/12/1000274629.jpg"
+            ];
+            const imageElement = document.getElementById('productImage');
+            const currentSrc = imageElement.src;
+            const nextImage = images[(images.indexOf(currentSrc) + 1) % images.length];
+            imageElement.src = nextImage;
+        }
+
+        // Function to update product text dynamically
+        function updateText() {
+            const productTitle = document.getElementById('productTitle');
+            const productDescription = document.getElementById('productDescription');
+            const productLastUpdated = document.getElementById('productLastUpdated');
+
+            productTitle.textContent = "vivo v27 5g - Exclusive Edition";
+            productDescription.textContent = "The Exclusive Edition of vivo v27 5g comes with an advanced design and performance upgrade. Limited units available!";
+            productLastUpdated.textContent = "Last updated 10 mins ago";
+        }
+
+        // Handle form submission dynamically
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent actual form submission
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block'; // Display success message
+        }
+    </script>
 
 </body>
 </html>

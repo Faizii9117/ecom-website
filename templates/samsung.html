@@ -3,76 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Detail Page</title>
+    <title>Futuristic E-Commerce Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
     <style>
+        /* Global Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f8f8;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
+            background-color: #1e1e1e;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        .product-header {
+
+        header {
+            background-color: #111;
+            color: #fff;
+            width: 100%;
+            padding: 20px 0;
             text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 40px;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: #66ff66;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-bottom: 20px;
         }
-        .product-title {
-            font-size: 2em;
-            color: #333;
+
+        .text-container {
+            flex: 2;
+            background-color: #2d2d2d;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
-        .product-price {
-            font-size: 1.5em;
-            color: #e74c3c;
+
+        .text-container:hover {
+            transform: translateY(-10px);
+            background-color: #333;
         }
-        .product-image {
-            max-width: 100%;
-            height: auto;
+
+        .custom-image-size {
+            width: 350px;
+            height: 350px;
+            border-radius: 15px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
-        .product-description {
-            margin-top: 20px;
+
+        .custom-image-size:hover {
+            transform: scale(1.05);
+        }
+
+        .card-title {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #66ff66;
+        }
+
+        .card-text {
+            font-size: 18px;
+            color: #bbb;
             line-height: 1.6;
         }
-        .buy-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-            margin-top: 20px;
+
+        .card-text small {
+            color: #999;
         }
-        .buy-button:hover {
-            background: #2980b9;
+
+        .btn {
+            background-color: #66ff66;
+            color: #111;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn:hover {
+            background-color: #4caf50;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .success-message {
+            color: #66ff66;
+            margin-top: 30px;
+            font-size: 18px;
+            display: none;
+            text-align: center;
+        }
+
+        .background-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 255, 0, 0.2) 25%, transparent 25%) -50px 0,
+                        linear-gradient(-45deg, rgba(0, 255, 0, 0.2) 25%, transparent 25%) -50px 0;
+            background-size: 100px 100px;
+            z-index: -1;
+            animation: moveLines 5s linear infinite;
+        }
+
+        @keyframes moveLines {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: 100px 100px;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="product-header">
-        <h1 class="product-title">samsung</h1>
-        <p class="product-price">79,999</p>
+    <header>
+        <h1> E-Commerce Store</h1>
+        <nav>
+            <a href="/index">Home</a>
+            <a href="/products">Products</a>
+            <a href="/contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="image-container">
+            <img id="productImage" src="https://rukminim2.flixcart.com/image/850/1250/xif0q/mobile/w/5/h/-original-imahyvnuta2aadbw.jpeg?q=90&crop=false" class="custom-image-size" alt="Sample Product Image">
+        </div>
+        <div class="text-container">
+            <div>
+                <h5 class="card-title" id="productTitle">Samsung S24 ultra</h5>
+                <p class="card-text" id="productDescription">The Samsung S24 ultra is equipped with cutting-edge performance, stunning display, and a camera system built for the next level. Feel the speed and efficiency.</p>
+                <p class="card-text"><small class="text-body-secondary" id="productLastUpdated">Last updated 3 mins ago</small></p>
+            </div>
+            <div>
+                <button class="btn" onclick="changeImage()">Change Image</button>
+                <button class="btn" onclick="updateText()">Update Product Info</button>
+            </div>
+        </div>
     </div>
-    <img src="data:image/jpeg;base64,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" alt="Product Image" class="product-image">
-    <div class="product-description">
-        <h2>Description</h2>
-        <p>8 GB RAM | 128 GB ROM | Expandable Upto 2 TB<br>
-            17.07 cm (6.72 inch) Full HD+ Display<br>
-            50MP + 2MP | 8MP Front Camera<br>
-            5000 mAh Battery<br>
-            Dimensity 6100+ Processor<br>
-        </p>
+
+    <form id="buyForm" onsubmit="handleFormSubmit(event)">
+        <div style="text-align: center;">
+            <button type="submit" class="btn">Buy Now</button>
+        </div>
+    </form>
+
+    <div id="successMessage" class="success-message">
+        Thank you for your purchase! We will process your order shortly.
     </div>
-    <a href="/buynow" class="buy-button">Buy Now</a>
-</div>
+
+    <div class="background-lines"></div>
+
+    <script>
+        // Function to change the image dynamically
+        function changeImage() {
+            const images = [
+                "https://www.designinfo.in/wp-content/uploads/2024/01/Samsung-Galaxy-S24-Ultra-512GB-Titanium-Black-5.webp",
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfJMWoIZ3RL-eI7g6dQGeFFrQft8oYd-B2RQ&s",
+                "https://th-i.thgim.com/public/sci-tech/technology/gadgets/pb1orq/article67828941.ece/alternates/FREE_1200/IMG_1385.jpg"
+            ];
+            const imageElement = document.getElementById('productImage');
+            const currentSrc = imageElement.src;
+            const nextImage = images[(images.indexOf(currentSrc) + 1) % images.length];
+            imageElement.src = nextImage;
+        }
+
+        // Function to update product text dynamically
+        function updateText() {
+            const productTitle = document.getElementById('productTitle');
+            const productDescription = document.getElementById('productDescription');
+            const productLastUpdated = document.getElementById('productLastUpdated');
+
+            productTitle.textContent = "Samsung S24 ultra - Exclusive Edition";
+            productDescription.textContent = "The Exclusive Edition of Samsung S24 ultra comes with an advanced design and performance upgrade. Limited units available!";
+            productLastUpdated.textContent = "Last updated 10 mins ago";
+        }
+
+        // Handle form submission dynamically
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent actual form submission
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block'; // Display success message
+        }
+    </script>
 
 </body>
 </html>

@@ -1,13 +1,17 @@
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
 from ecomapp import views
 
 urlpatterns = [
+    
+    
     path('admin/', admin.site.urls),
     path("",views.index,name='index'),
     path("login/", views.auth_login_view, name='login'),
+
     path("logout/", views.logout_view, name='logout'),
-    path("contact/", views.contact, name='contact'),
+    path('contact/', views.contact_view, name='contact'),  # Match the `redirect` call
     path("buynow/", views.buynow, name='buynow'),
     path("paynow/", views.paynow, name='paynow'),
     path("register/",views.register,name="register"),
@@ -17,6 +21,8 @@ urlpatterns = [
     path("details-apple/",views.details_apple,name="details"),
     path("details-vivo/",views.details_vivo,name="details"),
     path("details-oppo/",views.details_oppo,name="details"),
+    path("products/", views.products, name="products"),
+    path("index/", views.index, name="index"),
    
 
 
