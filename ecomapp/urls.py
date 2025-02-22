@@ -11,7 +11,7 @@ urlpatterns = [
     path("login/", views.auth_login_view, name='login'),
 
     path("logout/", views.logout_view, name='logout'),
-    path("contact/", views.contact, name='contact'),
+    path('contact/', views.contact_view, name='contact'),  # Match the `redirect` call
     path("buynow/", views.buynow, name='buynow'),
     path("paynow/", views.paynow, name='paynow'),
     path("register/",views.register,name="register"),

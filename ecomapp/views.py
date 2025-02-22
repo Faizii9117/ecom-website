@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout as auth_logout, authenticate, login as auth_login
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
+from ecomapp.models import Contact
 #from rest_framework import viewsets
 
 
@@ -55,9 +56,32 @@ def logout_view(request):
     return redirect("/login")
 
 
-def contact(request):
-    return render (request, "contact.html")
 
+def contact_view(request):
+   
+
+    context = {}
+
+    if request.method == "POST":
+        data = request.POST
+        name = data.get('name')
+        email = data.get('email')
+        message = data.get('message')
+
+        # Save the contact data
+        Contact.objects.create(
+            name=name,
+            email=email,
+            message=message
+        )
+
+        return redirect('contact') 
+
+    # Fetch all contact data to display
+    data = Contact.objects.all()
+    context["contact"] = data
+
+    return render(request, "Contact.html", context)
 
 def details_oneplus(request):
     return render (request, "oneplus.html")
