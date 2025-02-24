@@ -2,6 +2,11 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from ecomapp import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 
 urlpatterns = [
     
@@ -9,10 +14,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("",views.index,name='index'),
     path("login/", views.auth_login_view, name='login'),
-
     path("logout/", views.logout_view, name='logout'),
     path('contact/', views.contact_view, name='contact'),  # Match the `redirect` call
-    path("buynow/", views.buynow, name='buynow'),
+    path("buynow/", views.product_view, name='product'),
     path("paynow/", views.paynow, name='paynow'),
     path("register/",views.register,name="register"),
     path("details-samsung/",views.details_samsung,name="details"),
@@ -29,3 +33,5 @@ urlpatterns = [
    
 
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout as auth_logout, authenticate, login as auth_login
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from ecomapp.models import Contact
+from ecomapp.models import Contact,product
 
 
 #from rest_framework import viewsets
@@ -103,9 +103,34 @@ def details_vivo(request):
 def details_oppo(request):
     return render (request, "oppo.html")
 
+def product_view(request):
+    context = {}
 
-def buynow(request):
-    return render (request, "buynow.html")
+    if request.method == "POST":
+        data = request.POST
+        customer_name = data.get("customer_name")
+        mobile = data.get("mobile")
+        name = data.get('name')
+        price = data.get('price')
+        stock = data.get('stock')
+        image = request.FILES.get('image')
+
+        if name and price and stock:  # Ensure required fields are present
+            product.objects.create(
+                name=name,
+                price=price,
+                stock=stock,
+                image=image,
+                customer_name=customer_name,
+                mobile=mobile
+            )
+            return redirect('product')  # Redirect to avoid resubmitting form
+
+    # Fetch products
+    data = product.objects.all()
+    context["products"] = data
+
+    return render(request, "buynow.html", context)
 
 
 def paynow(request):

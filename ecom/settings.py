@@ -134,3 +134,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,"static")
 ]
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Store media separately
+
+
+
+import os
+
+static_dir = os.path.join("D:", "vs code", "basics", "basic_django", "public", "static")
+os.makedirs(static_dir, exist_ok=True)
+print(f"Created: {static_dir}")
+
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
