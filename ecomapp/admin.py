@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Contact  # Import the Contact model
+from .models import Contact ,product # Import the Contact model
 
 # Register the Contact model
 admin.site.register(Contact)
+admin.site.register(product)
