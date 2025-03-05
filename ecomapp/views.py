@@ -41,6 +41,10 @@ def auth_login_view(request):
         password = request.POST.get("password")
 
         user = authenticate(username=username, password=password)
+       
+        
+
+
 
         if user is not None:
             auth_login(request, user)
@@ -142,3 +146,8 @@ def products(request):
 
 def index(request):
     return render (request, "index.html")
+
+
+
+
+
