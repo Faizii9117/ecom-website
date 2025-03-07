@@ -4,6 +4,7 @@ from django.contrib.auth import logout as auth_logout, authenticate, login as au
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from ecomapp.models import Contact
+from .serializers import userserializer
 #from rest_framework import viewsets
 
 
@@ -19,7 +20,7 @@ def index(request):
 
 def register(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = userserializer(request.POST)
         if form.is_valid():
             user = form.save()  # Call the save method
             auth_login(request, user)  # Log the user in
@@ -27,7 +28,7 @@ def register(request):
             
     else:
         initial_data = {'username':'','password1':'','password2':''}
-        form = UserCreationForm(initial=initial_data)
+        form = userserializer(initial=initial_data)
     
     return render(request, 'register.html', {'form': form})   
 
@@ -55,13 +56,11 @@ def logout_view(request):
     messages.success(request, "You have been logged out.")
     return redirect("/login")
 
-<<<<<<< HEAD
  
 def contact(request):
     return render (request, "contact.html")
-=======
 
->>>>>>> 902c10aaff024e88502a5f17b8c296819259bdd9
+
 
 def contact_view(request):
    
