@@ -1,7 +1,40 @@
-{% extends "app.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Login</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(45deg, #87CEFA, #B0E0E6); /* Light sky blue gradient */
+      overflow: hidden;
+    }
 
+    /* Central Container */
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      max-width: 100%;
+      padding: 20px;
+      animation: fadeIn 2s ease-in-out;
+    }
 
-{% block content %}
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
 
 <div class=" row  justify-content-center">
     <div class ="col-sm-6">
@@ -20,18 +53,168 @@
             <span class="text-danger">{{form.password1.errors}}</span>
          </div>
 
-         <div class="form-group">
-            <label for="{{form.password2.id_for_label}}">Confirm password </label>
-            <input type="password" name="{{form.password2.name}}" class="form-control" value="{{form.password2.value}}" />
-            <span class="text-danger">{{form.password2.errors}}</span>
-         </div>
+    /* Login Form Section */
+    .login-container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      width: 320px;
+      text-align: center;
+      animation: slideIn 1.5s ease-in-out;
+    }
 
-         <button type="submit" class="btn btn-dark">create account</button>
-         <a href="{%url 'login'%}"class="btn btn-dark">login</a>
 
-        </form>
+    @keyframes slideIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
 
-    </div>
-</div>
+    h2 {
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      color: #333;
+    }
 
-{% endblock content %}%}
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      text-align: left;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .password-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .password-wrapper input {
+      width: 100%;
+      padding-right: 40px;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #777;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background: linear-gradient(45deg, #ff4b2b, #ff416c);
+    }
+
+    .btn-dark {
+      display: block;
+      margin-top: 10px;
+      color: #555;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .btn-dark:hover {
+      color: #000;
+    }
+
+    #message {
+      margin-top: 15px;
+      color: green;
+      font-weight: bold;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      .login-container {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Central Container -->
+  <div class="container">
+    <!-- Login Form Section -->
+    <section class="login-container">
+      <h2>Login</h2>
+      <form id="loginForm" method="post" action="/login/">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" class="form-control" name="username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <div class="password-wrapper">
+            <input type="password" id="password" class="form-control" name="password" required>
+            <span class="toggle-password" onclick="togglePassword('password')">👁️</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password:</label>
+          <div class="password-wrapper">
+            <input type="password" id="confirmPassword" class="form-control" required>
+            <span class="toggle-password" onclick="togglePassword('confirmPassword')">👁️</span>
+          </div>
+          <span id="confirmPasswordError" class="text-danger"></span>
+        </div>
+        <button type="submit">Login</button>
+        <a href="/register" class="btn-dark">Create Account</a>
+      </form>
+      <div id="message">
+        {% if messages %}
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function togglePassword(fieldId) {
+      const passwordField = document.getElementById(fieldId);
+      passwordField.type = passwordField.type === "password" ? "text" : "password";
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      let password = document.getElementById('password').value.trim();
+      let confirmPassword = document.getElementById('confirmPassword').value.trim();
+      let confirmPasswordError = document.getElementById('confirmPasswordError');
+
+      confirmPasswordError.textContent = "";
+
+      if (password !== confirmPassword) {
+        confirmPasswordError.textContent = "Passwords do not match!";
+        event.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>
