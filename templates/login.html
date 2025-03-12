@@ -13,99 +13,86 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      font-family: Arial, sans-serif;
-      background-color: #87CEFA; /* Light Sky Blue */
-      overflow: hidden;
-    }
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #dcdcdc, #f8f8f8);
+  }
 
-    /* Central Container */
-    .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+  .login-container {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.6);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+      width: 350px;
       text-align: center;
-      max-width: 100%;
-      padding: 20px;
-    }
+      border: 1px solid rgba(255, 255, 255, 0.5);
+  }
 
-    /* Login Form Section */
-    .login-container {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 20px;
-      border-radius: 20px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      width: 300px;
-      text-align: center;
-    }
-
-    h2 {
-      margin-bottom: 20px;
-      font-size: 1.8rem;
+  h2 {
+      font-size: 2rem;
       color: #333;
-    }
+      font-weight: 600;
+  }
 
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 5px;
+  .form-group {
       text-align: left;
-      font-weight: bold;
-    }
+      margin-bottom: 15px;
+  }
 
-    input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
+  label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #444;
+  }
 
-    button {
+  input {
       width: 100%;
       padding: 12px;
-      background: linear-gradient(45deg, #ff416c, #ff4b2b);
-      color: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.8);
+      color: black;
+      font-size: 1rem;
+      transition: all 0.3s ease-in-out;
+  }
+
+  input:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.3);
+  }
+
+  button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(45deg, #000, #222);
       border: none;
+      color: white;
+      font-size: 1rem;
       border-radius: 8px;
       cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s ease-in-out;
-    }
+      transition: all 0.3s ease-in-out;
+  }
 
-    button:hover {
-      background: linear-gradient(45deg, #ff4b2b, #ff416c);
-    }
+  button:hover {
+      background: linear-gradient(45deg, #222, #444);
+  }
 
-    .btn-dark {
-      display: block;
-      margin-top: 10px;
-      color: #555;
+  .btn-dark {
+      color: black;
       text-decoration: none;
       font-size: 0.9rem;
-      transition: color 0.3s ease-in-out;
-    }
+      display: block;
+      margin-top: 10px;
+      transition: 0.3s ease-in-out;
+  }
 
-    .btn-dark:hover {
-      color: #000;
-    }
+  .btn-dark:hover {
+      text-decoration: underline;
+  }
+</style>
 
-    #message {
-      margin-top: 15px;
-      color: green;
-      font-weight: bold;
-    }
 
-    /* Responsive Design */
-    @media (max-width: 600px) {
-      .login-container {
-        width: 80%;
-      }
-    }
-  </style>
 </head>
 <body>
   <!-- Central Container -->

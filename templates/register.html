@@ -162,7 +162,7 @@
   <div class="container">
     <!-- Login Form Section -->
     <section class="login-container">
-      <h2>Login</h2>
+      <h2>Create Account</h2>
       <form id="loginForm" method="post" action="/login/">
         {% csrf_token %}
         <div class="form-group">
@@ -184,8 +184,8 @@
           </div>
           <span id="confirmPasswordError" class="text-danger"></span>
         </div>
-        <button type="submit">Login</button>
-        <a href="/register" class="btn-dark">Create Account</a>
+        <button type="submit">Create Account</button>
+        <a href="/register" class="btn-dark">Login</a>
       </form>
       <div id="message">
         {% if messages %}

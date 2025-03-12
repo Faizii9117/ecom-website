@@ -5,7 +5,7 @@ from .models import *
 
 class userserializer(serializers.ModelSerializer):
     class Meta:
-        model = register
+        model = Register
         fields = '__all__'
 
       

@@ -16,17 +16,16 @@ urlpatterns = [
     path("login/", views.auth_login_view, name='login'),
     path("logout/", views.logout_view, name='logout'),
     path('contact/', views.contact_view, name='contact'),  # Match the `redirect` call
-    path("buynow/", views.product_view, name='product'),
-    path("paynow/", views.paynow, name='paynow'),
     path("register/",views.register,name="register"),
-    path("details-samsung/",views.details_samsung,name="details"),
-    path("details-oneplus/",views.details_oneplus,name="details"),
-    path("details-realme/",views.details_realme,name="details"),
-    path("details-apple/",views.details_apple,name="details"),
-    path("details-vivo/",views.details_vivo,name="details"),
-    path("details-oppo/",views.details_oppo,name="details"),
-    path("products/", views.products, name="products"),
+    path('product_detail/<int:id>/', views.product_detail, name='product_detail'),
     path("index/", views.index, name="index"),
+    path('item/',views.item, name='item '),
+    path('delete/<int:id>/', views.delete_product, name='delete_product'),
+    path('product_detail/<int:id>/buynow/', views.buy_now, name='buynow'),
+    # path('product/buy/<int:id>/', views.product_detail_1, name='product_detail'),
+
+
+
     
 
    

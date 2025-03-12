@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Your Smartphone</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #121212;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: #1e1e1e;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 10px 20px rgba(255, 255, 255, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #bbb;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background: #2b2b2b;
+            color: white;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background: #2b2b2b url('data:image/svg+xml;utf8,<svg fill="white" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"></path></svg>') no-repeat right 12px center;
+            background-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        /* Color Picker */
+        .color-picker {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input[type="color"] {
+            width: 50px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        /* Hide Damaged Checkbox Initially */
+        #damaged-check-group {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sell Your Smartphone</h2>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="item_name">Product Name</label>
+                <input type="text" id="item_name" name="item_name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="item_heading">Short Description</label>
+                <input type="text" id="item_heading" name="item_heading" required>
+            </div>
+
+            <div class="form-group">
+                <label for="item_desc">Product Description:</label>
+                <textarea id="item_desc" name="item_desc" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="item_img">Upload Image:</label>
+                <input type="file" name="item_img" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label>Condition:</label>
+                <select name="item_condition" id="condition" onchange="toggleDamagedCheckbox()">
+                    <option value="New">New</option>
+                    <option value="Refurbished">Refurbished</option>
+                    <option value="Old">Old</option>
+                </select>
+            </div>
+
+            <!-- Damaged Checkbox (Hidden by Default) -->
+            <div class="form-group" id="damaged-check-group">
+                <label>Is the device damaged?</label>
+                <input type="checkbox" name="damaged" value="yes"> Yes
+                <input type="checkbox" name="damaged" value="no"> No
+            </div>
+
+            <div class="form-group">
+                <label for="item_price">Product Price</label>
+                <input type="number" id="item_price" name="item_price" required>
+            </div>
+
+            <div class="form-group color-picker">
+                <label>Choose Color:</label>
+                <input type="color" name="item_color" value="#FFFFFF">
+            </div>
+
+            <button type="submit">Upload Details</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleDamagedCheckbox() {
+            var condition = document.getElementById("condition").value;
+            var damagedCheckGroup = document.getElementById("damaged-check-group");
+
+            if (condition === "Old") {
+                damagedCheckGroup.style.display = "block";
+            } else {
+                damagedCheckGroup.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

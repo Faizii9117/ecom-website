@@ -3,10 +3,18 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout as auth_logout, authenticate, login as auth_login
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 from ecomapp.models import Contact
 from .serializers import userserializer
-from ecomapp.models import Contact,product
+from ecomapp.models import *
+from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import render, redirect
+from twilio.rest import Client
+from .models import Order  
+
+
+
 
 #from rest_framework import viewsets
 
@@ -16,10 +24,9 @@ from ecomapp.models import Contact,product
 def index(request):
     if request.user.is_anonymous:
         return redirect("/login")
-    
+    item_data = Items.objects.all()
 
-    return render(request, "index.html")
-
+    return render(request, "index.html", {'item_data': item_data})
 
 def register(request):
     if request.method == "POST":
@@ -44,10 +51,6 @@ def auth_login_view(request):
 
         user = authenticate(username=username, password=password)
        
-        
-
-
-
         if user is not None:
             auth_login(request, user)
             return redirect("/")
@@ -64,11 +67,6 @@ def logout_view(request):
     return redirect("/login")
 
  
-def contact(request):
-    return render (request, "contact.html")
-
-
-
 def contact_view(request):
    
 
@@ -87,73 +85,96 @@ def contact_view(request):
             message=message
         )
 
-        return redirect('contact') 
-
+        return redirect('index') 
+ 
     # Fetch all contact data to display
     data = Contact.objects.all()
     context["contact"] = data
 
     return render(request, "Contact.html", context)
 
-def details_oneplus(request):
-    return render (request, "oneplus.html")
 
-def details_samsung(request):
-    return render (request, "samsung.html")
 
-def details_realme(request):
-    return render (request, "realme.html")
 
-def details_apple(request):
-    return render (request, "apple.html")
 
-def details_vivo(request):
-    return render (request, "vivo.html")
-
-def details_oppo(request):
-    return render (request, "oppo.html")
-
-def product_view(request):
-    context = {}
-
+def item(request):
     if request.method == "POST":
         data = request.POST
-        customer_name = data.get("customer_name")
-        mobile = data.get("mobile")
-        name = data.get('name')
-        price = data.get('price')
-        stock = data.get('stock')
-        image = request.FILES.get('image')
+        item_name = data.get("item_name")
+        item_heading = data.get("item_heading")
+        item_desc = data.get("item_desc") 
+        item_img = request.FILES.get("item_img")
+        item_condition=data.get('item_condition')
+        item_price = data.get("item_price")
+        item_color=data.get("item_color")
+        is_damaged = data.get("is_damaged") == "on"
 
-        if name and price and stock:  # Ensure required fields are present
-            product.objects.create(
-                name=name,
-                price=price,
-                stock=stock,
-                image=image,
-                customer_name=customer_name,
-                mobile=mobile
+        Items.objects.create(
+            item_name=item_name,
+            item_heading=item_heading,
+            item_desc=item_desc,
+            item_img=item_img,
+            item_condition=item_condition, 
+            item_price=item_price,
+            item_color=item_color,
+            is_damaged=is_damaged,
+        )
+        return redirect("index")  
+
+    
+    data = Items.objects.all()
+    context = {"item_data": data}
+
+    return render(request, "items.html", context)
+
+
+def delete_product(request, id):
+    queryset=Items.objects.get(item_id=id)
+    queryset.delete()
+    return redirect('index')
+
+
+def product_detail(request, id):
+    detail = get_object_or_404(Items, item_id=id) 
+    return render(request, 'product_detail.html', {'detail': detail})
+
+
+# def product_detail_1(request, id):
+#     detail_1 = get_object_or_404(Items, item_id=id) 
+#     return render(request, 'product_detail_1.html', {'detail_1': detail_1})
+
+
+
+
+
+
+
+
+def buy_now(request,id):
+    product_ordered = get_object_or_404(Items, item_id=id)     
+    if request.method == "POST":
+        print("🛒 buy_now view called!")  # Ensure this prints
+
+        customer_name = request.POST.get("customer_name")
+        mobile_no = request.POST.get("mobile_no")
+        address = request.POST.get("address")
+        landmark = request.POST.get("landmark")
+        payment_mode = request.POST.get("payment_mode")
+
+        print(f"📢 Data received: {customer_name}, {mobile_no}, {address}, {landmark}, {payment_mode}") 
+        order = Order.objects.create(
+            customer_name=customer_name,
+            mobile_no=mobile_no,
+            address=address,
+            landmark=landmark,
+            payment_mode=payment_mode,
             )
-            return redirect('product')  # Redirect to avoid resubmitting form
-
-    # Fetch products
-    data = product.objects.all()
-    context["products"] = data
-
-    return render(request, "buynow.html", context)
-
-
-def paynow(request):
-    return render (request, "paynow.html")
-
-
-def products(request):
-    return render (request, "products.html")
-
-def index(request):
-    return render (request, "index.html")
-
-
-
-
-
+        print(f"✅ Order created: {order}")  # Debugging
+        return redirect("/")
+    
+    data = Order.objects.all()
+    context = {
+        "order_data": data,
+        "ordered_product": product_ordered
+         }
+    return render(request, "buynow.html",context)
